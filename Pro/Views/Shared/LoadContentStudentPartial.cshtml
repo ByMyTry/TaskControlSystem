@@ -1,0 +1,37 @@
+﻿@model Pro.Models.Content
+
+<div>
+    <b> Изменён: </b>
+    @Html.DisplayFor(model => model.Date)
+</div>
+<br>
+<div>
+    <b> Требования: </b>
+    @ViewBag.Requirements
+</div>
+<br>
+<div>
+    <b> Комментарий: </b>
+    @Html.DisplayFor(model => model.Comment)
+</div>
+<br>
+@using (Html.BeginForm("SaveContent", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.TaskId)
+    @Html.HiddenFor(model => model.ContentTemplateId)
+    @Html.HiddenFor(model => model.ContentStatusId)
+
+    @Html.TextAreaFor(model => model.Text, 10, 200, new { @class = "form-control" })
+
+    <br>
+    <div class="form-group">
+        @if (Model.ContentStatusId != (int)Pro.Logic.Auth.ContentStatus.Accepted)
+        {
+            <input name="action" type="submit" value="Сохранить" class="btn btn-default" style="margin-right: 10px;" />
+            <input name="action" type="submit" value="Отмена" class="btn btn-default" />
+        }
+    </div>
+}

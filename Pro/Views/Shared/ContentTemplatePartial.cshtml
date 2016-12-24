@@ -1,0 +1,62 @@
+﻿@model Pro.Models.TemplateModel
+
+<h2>Разделы</h2>
+@{
+    int myId = 0;
+}
+
+@foreach (var contentTemplate in Model.ContentTemplates)
+{    
+    myId++;
+    using (Html.BeginForm("EditContentTemplate", "Home", FormMethod.Post))
+    {
+        <div class="form-horizontal col-md-10" id=@myId.ToString()>
+            <hr />               
+                
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => contentTemplate.Id)
+            @Html.HiddenFor(model => contentTemplate.TemplateId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => contentTemplate.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => contentTemplate.Name, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } }) 
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })                   
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => contentTemplate.Requirements, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.TextAreaFor(model => contentTemplate.Requirements, 3, 75, new { @class = "form-control text-area", @disabled = "disabled" })                    
+            </div>                                
+
+            <input type="button" value="Редактировать" class="btn btn-default myButton1 col-md-offset-2" onclick="activeInp('@myId',this);" />
+
+            <div class="stackButton2 col-md-offset-2">
+                <input name="action" type="submit" value="Сохранить" class="btn btn-default myButton2" />
+                <input type="button" value="Отмена" class="btn btn-default myButton2" onclick="unActiveInp('@myId',this);" />
+            </div>                            
+        </div>
+    }    
+}
+
+<div id="UpdateTargetId"> </div>
+
+<script>
+        function activeInp(id, obj) {
+            $(obj).addClass("active")
+            $(obj).parent("#" + id).find(".text-box").removeAttr('disabled', false);
+            $(obj).parent("#" + id).find(".text-area").removeAttr('disabled', false);
+        };
+
+        function unActiveInp(id, obj) {
+            $(obj).parent().parent("#" + id).find(".myButton1").removeClass("active");
+            $(obj).parent().parent("#" + id).find(".text-box").attr('disabled', true);
+            $(obj).parent().parent("#" + id).find(".text-area").attr('disabled', true);
+        };
+    /*
+    $(".myButton2").click(function() {
+        $(".myButton1").removeClass("active")
+    });
+    */
+</script>
+
+    

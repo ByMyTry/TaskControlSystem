@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Pro.Models.LogModel>
+
+@{
+    ViewBag.Title = "UserLogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>UserLogs</h4>
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Date)</th>
+            <th>@Html.DisplayNameFor(model => model.User)</th>
+            <th>@Html.DisplayNameFor(model => model.LogAction)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>@log.Date</td>
+                <td>@log.User.Name</td>
+                <td>@log.LogAction.Action</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

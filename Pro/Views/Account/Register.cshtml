@@ -1,0 +1,61 @@
+﻿@model Pro.Models.RegisterModel
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Регистрация </h4>
+        <hr />
+        @Html.ValidationSummary()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Login)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Surname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Surname)
+            </div>
+        </div>
+        
+        <div class="form-group">    
+            @Html.LabelFor(model => model.RoleId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="RoleId" name="RoleId">
+                    <option value="2">Преподаватель</option>
+                    <option value="3">Студент</option>
+                </select>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Зарегистрироваться" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

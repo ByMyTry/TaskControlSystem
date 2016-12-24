@@ -1,0 +1,55 @@
+﻿@model Pro.Models.LastTaskModel
+@{
+    ViewBag.Title = "Task";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .task-block {
+        display: inline-block;
+    }
+
+    .task-top {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .task-left {
+        float: left;
+        width: 20%;
+        margin-right: 20px;
+    }
+
+    .task-right {
+        float: left;
+        width: 75%;
+    }
+
+    textarea {
+        max-width: 750px !important;
+    }
+</style>
+
+
+<h2> @Html.DisplayFor(model => model.Name, new { @class = "control-label col-md-1" }) </h2>
+
+<div class="task-block task-top">
+    @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-1" })
+    @Html.DisplayFor(model => model.Text, new { @class = "control-label col-md-2" })
+</div>
+
+<div class="task-block task-left">
+    <ul>
+        @foreach (var linkContentTemplates in Model.LinkContentTemplates)
+        {
+            <li>
+                @Ajax.ActionLink(linkContentTemplates.ContentTemplate.Name, "LoadContent", new { idContentTemplate = linkContentTemplates.ContentTemplate.Id, idTask = Model.Id }, new AjaxOptions { UpdateTargetId = "UpdateTargetId" })
+                @if (linkContentTemplates.isChange) { <span>(изменён)</span> }
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="task-block task-right">
+    <div id="UpdateTargetId"> </div>
+</div>

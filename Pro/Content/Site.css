@@ -1,0 +1,80 @@
+﻿body {
+    padding-top: 50px;      
+    background-color: #f9f9f9;  
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;      
+    margin: 0 auto;       
+    width: 90%;
+    background-color: #f8f8f8;
+}
+
+.myContainer {
+    width: 90%;
+    margin: 0 auto;    
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 500px;
+}
+
+h2 {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+hr {
+    /*margin: 10px 0;*/
+}
+
+ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.positioner {    
+    text-align: center;    
+}
+
+.positioner:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.block {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;            
+}
+
+.Index_left {
+    float: left;
+    width: 74%;
+}
+
+.Index_right {
+    float: right;
+    width: 24%; 
+}
+
+.Index_create {
+    display: inline-block;
+}
+
+.myButton1.active {
+    display: none;
+}
+
+.stackButton2 {
+    display: none;
+}
+
+.myButton1.active ~ .stackButton2 {
+    display: block;
+}
